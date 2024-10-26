@@ -1,0 +1,44 @@
+.overlay {
+    display: flex;
+    justify-content: center;
+    background-color: #1C1C21;
+    width: 100%;
+    min-width: 1200px;
+}
+
+.header {
+    composes: pt-4 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
+    composes: pb-4 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+}
+
+.leftButtons {
+    display: flex;
+    gap: 8px;
+    justify-self: center;
+}
+
+.rightButtons {
+    display: flex;
+    justify-self: center;
+}
+
+.button {
+    border-radius: 35px;
+    display: flex;
+    align-items : center;
+    padding: 5px 20px;
+    gap: 8px;
+    color: gray;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.button:hover {
+    color: white;
+    transition: color linear 0.3s;
+}

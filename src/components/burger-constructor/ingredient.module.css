@@ -1,0 +1,9 @@
+.ingridient {
+    display: flex;
+    padding-right: 16px;
+    align-items: center;
+}
+
+.icon {
+    width: 30px;
+}

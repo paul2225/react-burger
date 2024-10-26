@@ -1,0 +1,51 @@
+.orderDetails {
+    position: fixed;
+    background-color: #1C1C21;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 800px;
+    height: 800px;
+    align-self: center;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.closeIcon {
+    cursor: pointer;
+    align-self: flex-end;
+    padding-top: 60px;
+    padding-right: 40px;
+}
+
+.orderNumber {
+    composes: text from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    composes: text_type_digits-large from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+
+    padding-top: 120px;
+    text-shadow: 0 0 100px rgba(0, 0, 255, 0.5), 0 0 200px rgba(0, 0, 255, 0.3);
+}
+
+.orderIdentifierText {
+    composes: text from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    composes: text_type_main-medium from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    padding-top: 32px;
+}
+
+.completedIcon {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.orderCookingText {
+    composes: text from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    composes: text_type_main-small from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+}
+
+.waitOrderText {
+    composes: text from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    composes: text_type_main-small from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+
+    padding-top: 8px;
+    padding-bottom: 120px;
+}

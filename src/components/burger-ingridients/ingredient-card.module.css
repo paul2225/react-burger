@@ -1,0 +1,25 @@
+.img {
+    align-self: center;
+}
+
+.name {
+    composes: text from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    composes: text_type_main-default from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    align-self: center;
+    text-align: center;
+}
+
+.price {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    align-self: center;
+}
+
+.card {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
