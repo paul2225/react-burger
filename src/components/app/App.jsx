@@ -20,20 +20,20 @@ function App() {
             .then(result => {
                 setIngredients([...result.data]);
             })
-            .catch(error => console.log(error));
+            .catch(console.error);
     }, []);
 
     return (
         <>
             <AppHeader/>
-            <div className={styles.main}>
-                <div className={styles.ingridients}>
+            <main className={styles.main}>
+                <section className={styles.ingridients}>
                     <BurgerIngredients ingredients={ingredients}/>
-                </div>
-                <div className={styles.constructor}>
+                </section>
+                <section className={styles.constructor}>
                     <BurgerConstructor/>
-                </div>
-            </div>
+                </section>
+            </main>
         </>
     );
 }

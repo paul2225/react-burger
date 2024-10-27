@@ -2,6 +2,7 @@ import React from 'react';
 import styles from "./ingredients-container.module.css";
 import IngredientCard from "./IngredientCard";
 import PropTypes from "prop-types";
+import {ingredientShape} from "../../types/IngredientPropTypes";
 
 function IngredientsContainer(props) {
     return (
@@ -11,13 +12,10 @@ function IngredientsContainer(props) {
             </p>
             <div className={styles.ingredientsContainer}>
                 {
-                    props.items.map(item =>
+                    props.ingredients.map(ingredient =>
                         <IngredientCard
-                            onClick={() => props.chooseIngredient(item._id)}
-                            key={item._id}
-                            img={item.image}
-                            price={item.price}
-                            name={item.name}
+                            onClick={() => props.chooseIngredient(ingredient._id)}
+                            ingredient={ingredient}
                         />
                     )
                 }
@@ -28,7 +26,8 @@ function IngredientsContainer(props) {
 
 IngredientsContainer.propTypes = {
     header: PropTypes.string.isRequired,
-    items: PropTypes.array.isRequired,
+    ingredients: PropTypes.arrayOf(ingredientShape).isRequired,
+    chooseIngredient: PropTypes.func.isRequired
 }
 
 export default IngredientsContainer;

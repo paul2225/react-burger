@@ -2,10 +2,10 @@ import React from 'react';
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./burger-ingredients.module.css";
 import IngredientsContainer from "./IngredientsContainer";
-import ReactDOM from "react-dom";
 import Modal from "../modal/Modal";
 import IngredientDetails from "../ingredient-details/IngredientDetails";
 import PropTypes from "prop-types";
+import {ingredientShape} from "../../types/IngredientPropTypes";
 
 function BurgerIngredients(props) {
     const [current, setCurrent] = React.useState('one')
@@ -40,31 +40,28 @@ function BurgerIngredients(props) {
             <div className={styles.ingredientsList}>
                 {
                     Object.entries(ingredientsByType)
-                        .map(([type, items]) =>
+                        .map(([type, ingredients]) =>
                             <IngredientsContainer
                                 key={type}
                                 chooseIngredient={(id) => setChosenIngredientId(id)}
                                 header={typeNames[type]}
-                                items={items}
+                                ingredients={ingredients}
                             />
                         )
                 }
             </div>
-            {chosenIngridientId !== -1 && ReactDOM.createPortal(
+            {chosenIngridientId !== -1 &&
                 <Modal
-                    modal={<IngredientDetails
-                        ingredient={ingredientsById[chosenIngridientId]}
-                        close={() => setChosenIngredientId(-1)}
-                    />}
-                />,
-                document.getElementById("modal")
-            )}
+                    close={() => setChosenIngredientId(-1)}
+                    modal={<IngredientDetails ingredient={ingredientsById[chosenIngridientId]}/>}
+                />
+            }
         </>
     );
 }
 
 BurgerIngredients.propTypes = {
-    ingredients: PropTypes.array.isRequired
+    ingredients: PropTypes.arrayOf(ingredientShape).isRequired
 }
 
 export default BurgerIngredients;

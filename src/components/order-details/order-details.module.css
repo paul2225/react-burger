@@ -1,21 +1,12 @@
 .orderDetails {
-    position: fixed;
     background-color: #1C1C21;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 800px;
-    height: 800px;
     align-self: center;
     border-radius: 50px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.closeIcon {
-    cursor: pointer;
-    align-self: flex-end;
-    padding-top: 60px;
-    padding-right: 40px;
+    width: 800px;
+    height: 700px;
 }
 
 .orderNumber {

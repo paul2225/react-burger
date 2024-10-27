@@ -2,30 +2,30 @@ import React from 'react';
 import styles from "./ingredient.module.css";
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
+import {ingredientShape} from "../../types/IngredientPropTypes";
 
 function Ingredient(props) {
     return (
-        <div className={styles.ingridient}>
-            <div className={styles.icon}>
+        <article className={styles.ingridient}>
+            <span className={styles.icon}>
                 {props.isDraggable && <div className={styles.icon}><DragIcon type="primary"/></div>}
-            </div>
+            </span>
             <ConstructorElement
-                type="top"
+                type={props.type}
                 isLocked={props.isLocked}
-                text={props.name}
-                price={props.price}
-                thumbnail={props.img}
+                text={props.ingredient.name}
+                price={props.ingredient.price}
+                thumbnail={props.ingredient.image}
             />
-        </div>
+        </article>
     );
 }
 
 Ingredient.propTypes = {
     isDraggable: PropTypes.bool.isRequired,
+    type: PropTypes.oneOf(['top', 'bottom']),
     isLocked: PropTypes.bool.isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    img: PropTypes.string.isRequired
+    ingredient: ingredientShape,
 };
 
 export default Ingredient;

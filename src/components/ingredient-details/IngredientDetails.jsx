@@ -1,45 +1,44 @@
 import React from 'react';
 import styles from './ingridient-details.module.css';
-import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
+import {ingredientShape} from "../../types/IngredientPropTypes";
 
 function IngredientDetails(props) {
     return (
-        <div className={styles.ingredientDetails}>
-            <div className={styles.header}>
-                <p className={styles.headerText}>Детали ингридиента</p>
-                <div className={styles.closeIcon} onClick={props.close}>
-                    <CloseIcon type="primary"/>
-                </div>
-            </div>
-            <img className={styles.image} src={props.ingredient.image} alt="Ingredient"/>
-            <p className={styles.ingredientName}>{props.ingredient.name}</p>
-            <div className={styles.ingredientsInfo}>
-                <div className={styles.ingredientInfo}>
-                    <p className={styles.infoName}>Калории,ккал</p>
-                    <p className={styles.infoData}>{props.ingredient.calories}</p>
-                </div>
-                <div className={styles.ingredientInfo}>
-                    <p className={styles.infoName}>Белки,г</p>
-                    <p className={styles.infoData}>{props.ingredient.proteins}</p>
-                </div>
-                <div className={styles.ingredientInfo}>
-                    <p className={styles.infoName}>Жиры,г</p>
-                    <p className={styles.infoData}>{props.ingredient.fat}</p>
-                </div>
-                <div className={styles.ingredientInfo}>
-                    <p className={styles.infoName}>Углеводы,г</p>
-                    <p className={styles.infoData}>{props.ingredient.carbohydrates}</p>
-                </div>
+        <section className={styles.ingredientDetails}>
+            <header className={styles.header}>
+                <h2 id="ingredient-details-heading" className={styles.headerText}>Детали ингредиента</h2>
+            </header>
+            <img
+                className={styles.image}
+                src={props.ingredient.image}
+                alt={`Изображение ингредиента: ${props.ingredient.name}`}
+            />
 
-            </div>
-        </div>
+            <h3 className={styles.ingredientName}>{props.ingredient.name}</h3>
+            <dl className={styles.ingredientsInfo}>
+                <div className={styles.ingredientInfo}>
+                    <dt className={styles.infoName}>Калории, ккал</dt>
+                    <dd className={styles.infoData}>{props.ingredient.calories}</dd>
+                </div>
+                <div className={styles.ingredientInfo}>
+                    <dt className={styles.infoName}>Белки, г</dt>
+                    <dd className={styles.infoData}>{props.ingredient.proteins}</dd>
+                </div>
+                <div className={styles.ingredientInfo}>
+                    <dt className={styles.infoName}>Жиры, г</dt>
+                    <dd className={styles.infoData}>{props.ingredient.fat}</dd>
+                </div>
+                <div className={styles.ingredientInfo}>
+                    <dt className={styles.infoName}>Углеводы, г</dt>
+                    <dd className={styles.infoData}>{props.ingredient.carbohydrates}</dd>
+                </div>
+            </dl>
+        </section>
     )
 }
 
 IngredientDetails.propTypes = {
-    close: PropTypes.func.isRequired,
-    ingredient: PropTypes.object.isRequired,
+    ingredient: ingredientShape.isRequired,
 }
 
 export default IngredientDetails;

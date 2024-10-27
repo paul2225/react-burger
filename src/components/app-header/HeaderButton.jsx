@@ -6,9 +6,7 @@ import PropTypes from "prop-types";
 function HeaderButton(props) {
     return (
         <Link className={styles.button} style={{textDecoration: 'none'}} to={props.link}>
-            <div>
-                {props.buttonIcon}
-            </div>
+            <span>{props.buttonIcon}</span>
             <p className="text text_type_main-default styles.buttonText">
                 {props.buttonText}
             </p>
@@ -17,6 +15,7 @@ function HeaderButton(props) {
 }
 
 HeaderButton.propTypes = {
+    link: PropTypes.string.isRequired,
     buttonIcon: PropTypes.element.isRequired,
     buttonText: PropTypes.string.isRequired,
 }

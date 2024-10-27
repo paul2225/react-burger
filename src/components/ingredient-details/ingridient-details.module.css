@@ -14,12 +14,6 @@
     padding-left: 40px;
 }
 
-.closeIcon {
-    cursor: pointer;
-    padding-right: 40px;
-    align-content: center;
-}
-
 .image {
     width: 600px;
     height: auto;

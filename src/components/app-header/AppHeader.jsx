@@ -6,9 +6,9 @@ import {Link} from "react-router-dom";
 
 function AppHeader() {
     return (
-        <header className={styles.overlay}>
-            <div className={styles.header}>
-                <div className={styles.leftButtons}>
+        <section className={styles.overlay}>
+            <header className={styles.header}>
+                <nav className={styles.leftButtons}>
                     <HeaderButton
                         buttonIcon={<BurgerIcon type="secondary"/>}
                         buttonText="Конструктор"
@@ -19,16 +19,16 @@ function AppHeader() {
                         buttonText="Лента заказов"
                         link={'/feed'}
                     />
-                </div>
+                </nav>
                 <Link to={'/'}>
                     <Logo/>
                 </Link>
-                <div className={styles.rightButtons}>
+                <nav className={styles.rightButtons}>
                     <HeaderButton buttonIcon={<ProfileIcon type="secondary"/>} buttonText="Личный кабинет"
                                   link={'/me'}/>
-                </div>
-            </div>
-        </header>
+                </nav>
+            </header>
+        </section>
     );
 }
 
