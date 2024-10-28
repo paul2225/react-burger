@@ -14,6 +14,7 @@ function IngredientsContainer(props) {
                 {
                     props.ingredients.map(ingredient =>
                         <IngredientCard
+                            key={ingredient._id}
                             onClick={() => props.chooseIngredient(ingredient._id)}
                             ingredient={ingredient}
                         />

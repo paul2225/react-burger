@@ -4,6 +4,8 @@ import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger
 import PropTypes from "prop-types";
 import {ingredientShape} from "../../types/IngredientPropTypes";
 
+const typeName = {top: " (верх)", bottom: ' (низ)', null: ''}
+
 function Ingredient(props) {
     return (
         <article className={styles.ingridient}>
@@ -13,7 +15,7 @@ function Ingredient(props) {
             <ConstructorElement
                 type={props.type}
                 isLocked={props.isLocked}
-                text={props.ingredient.name}
+                text={props.ingredient.name + typeName[props.type]}
                 price={props.ingredient.price}
                 thumbnail={props.ingredient.image}
             />

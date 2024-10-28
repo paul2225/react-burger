@@ -5,6 +5,8 @@ import ReactDOM from "react-dom";
 import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import ModalOverlay from "./ModalOverlay";
 
+const stopPropagation = (event) => event.stopPropagation();
+
 function Modal({modal, close}) {
 
     useEffect(() => {
@@ -21,8 +23,9 @@ function Modal({modal, close}) {
     return (
         ReactDOM.createPortal(
             <ModalOverlay
+                close={close}
                 content={
-                    <section className={styles.modalContent}>
+                    <section className={styles.modalContent} onClick={stopPropagation}>
                         <button
                             className={styles.closeIcon}
                             onClick={close}
