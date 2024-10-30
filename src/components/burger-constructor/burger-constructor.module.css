@@ -1,0 +1,35 @@
+.constructor {
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ingredients {
+    composes: mt-4 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
+    composes: mb-4 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
+    composes: custom-scroll from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 0;
+    max-height: calc(100vh - 256px - 40px - 40px);
+    overflow-y: auto;
+}
+
+.price {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.orderDetails {
+    padding-top: 40px;
+    gap: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}

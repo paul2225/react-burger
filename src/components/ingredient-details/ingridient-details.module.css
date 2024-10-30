@@ -1,0 +1,66 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 40px;
+}
+
+.headerText {
+    composes: text from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    composes: text_type_main-large from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    padding-left: 40px;
+}
+
+.image {
+    width: 600px;
+    height: auto;
+}
+
+.ingredientName {
+    composes: text from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    composes: text_type_main-medium from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    padding-top: 16px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: center;
+}
+
+.ingredientDetails {
+    background-color: #1C1C21;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    border-radius: 50px;
+    max-width: 720px;
+}
+
+.ingredientsInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 32px;
+    gap: 20px;
+}
+
+.ingredientInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 60px;
+}
+
+.infoName {
+    composes: text from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    composes: text_type_main-default from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    composes: text_color_inactive from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+}
+
+.infoData {
+    composes: text from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    composes: text_type_digits-default from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    composes: text_color_inactive from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+}

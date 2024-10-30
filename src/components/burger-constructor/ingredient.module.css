@@ -1,0 +1,11 @@
+.ingridient {
+    display: flex;
+    padding-right: 16px;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.icon {
+    width: 30px;
+}
