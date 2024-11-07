@@ -22,4 +22,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
+}
+
+.counter {
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }

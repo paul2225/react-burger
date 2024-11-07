@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './order-details.module.css';
-import PropTypes from "prop-types";
 import doneIcon from '../../images/done_icon.svg'
+import {orderShape} from "../../types/OrderPropTypes";
 
 function OrderDetails(props) {
     return (
         <>
             <section className={styles.orderDetails}>
-                <h2 className={styles.orderNumber}>{props.orderNumber}</h2>
+                <h2 className={styles.orderNumber}>{props.order.order.number}</h2>
                 <p className={styles.orderIdentifierText}>идентификатор заказа</p>
                 <img className={styles.completedIcon} src={doneIcon}
                      alt='Иконка завершения: заказ успешно принят и начат к приготовлению'/>
@@ -19,7 +19,7 @@ function OrderDetails(props) {
 }
 
 OrderDetails.propTypes = {
-    orderNumber: PropTypes.number.isRequired,
+    order: orderShape.isRequired
 }
 
 export default OrderDetails;
