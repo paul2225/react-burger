@@ -2,6 +2,7 @@
     padding-top: 60px;
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .ingredients {
@@ -14,7 +15,7 @@
     align-items: flex-start;
     gap: 16px;
     padding: 0;
-    max-height: calc(100vh - 256px - 40px - 40px);
+    height: calc(100vh - 256px - 40px - 40px);
     overflow-y: auto;
 }
 
