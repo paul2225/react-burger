@@ -1,4 +1,4 @@
-import {BASE_API_URL, request} from "../../utils/request";
+import {BASE_API_URL, request} from "../../../utils/request";
 
 export const GET_CREATED_ORDER_FAILED = 'GET_CREATED_ORDER_FAILED';
 export const GET_CREATED_ORDER_REQUEST = 'GET_CREATED_ORDER_REQUEST';

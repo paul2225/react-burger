@@ -9,14 +9,17 @@ import Ingredient from "./Ingredient";
 import {
     ADD_CONSTRUCTOR_INGREDIENT,
     UPDATE_CONSTRUCTOR_INGREDIENTS
-} from "../../services/actions/constructorIngredients";
-import {CLEAR_CREATED_ORDER, getCreatedOrder} from "../../services/actions/createdOrder";
+} from "../../services/actions/constructor/constructorIngredients";
+import {CLEAR_CREATED_ORDER, getCreatedOrder} from "../../services/actions/constructor/createdOrder";
+import Cookies from "js-cookie";
+import {useNavigate} from "react-router-dom";
 
 function BurgerConstructor() {
     const ingredients = useSelector(state => state.constructorIngredients.ingredients);
     const createdOrder = useSelector(state => state.createdOrder.order);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate()
 
     const moveIngredient = (draggedIndex, targetIndex) => {
         const updatedIngredients = [...ingredients];
@@ -50,6 +53,16 @@ function BurgerConstructor() {
             .reduce((acc, num) => acc + num, 0),
         [ingredients]
     );
+
+    function handleSubmit() {
+        const accessToken = Cookies.get('accessToken');
+
+        if (accessToken === undefined) {
+            navigate('/login')
+        }
+
+        dispatch(getCreatedOrder(ingredients.map(ingredient => ingredient._id)))
+    }
 
     return (
         <section className={styles.constructor}>
@@ -86,7 +99,7 @@ function BurgerConstructor() {
                     htmlType="button"
                     type="primary"
                     size="large"
-                    onClick={() => dispatch(getCreatedOrder(ingredients.map(ingredient => ingredient._id)))}
+                    onClick={handleSubmit}
                 >
                     Оформить заказ
                 </Button>

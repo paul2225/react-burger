@@ -4,7 +4,7 @@ import {useDrag} from "react-dnd";
 import styles from './ingredient-card.module.css';
 import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {ingredientShape} from "../../types/IngredientPropTypes";
-import {SET_VIEWED_INGREDIENT} from "../../services/actions/viewedIngredient";
+import {SET_VIEWED_INGREDIENT} from "../../services/actions/constructor/viewedIngredient";
 import PropTypes from "prop-types";
 
 function IngredientCard(props) {
@@ -15,15 +15,13 @@ function IngredientCard(props) {
         item: props.ingredient
     });
 
+    function handleClick() {
+        dispatch({type: SET_VIEWED_INGREDIENT, viewedIngredient: props.ingredient})
+        window.history.pushState({}, '', '/ingredients/' + props.ingredient._id);
+    }
+
     return (
-        <article
-            ref={dragRef}
-            className={styles.card}
-            onClick={() => dispatch({
-                type: SET_VIEWED_INGREDIENT,
-                viewedIngredient: props.ingredient
-            })}
-        >
+        <article ref={dragRef} className={styles.card} onClick={handleClick}>
             <img
                 src={props.ingredient.image}
                 className={styles.img}

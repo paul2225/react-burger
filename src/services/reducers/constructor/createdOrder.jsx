@@ -3,7 +3,7 @@ import {
     GET_CREATED_ORDER_FAILED,
     GET_CREATED_ORDER_REQUEST,
     GET_CREATED_ORDER_SUCCESS
-} from "../actions/createdOrder";
+} from "../../actions/constructor/createdOrder";
 
 
 const initialState = {

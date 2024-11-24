@@ -5,7 +5,7 @@ import styles from "./ingredient.module.css";
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import {ingredientShape} from "../../types/IngredientPropTypes";
-import {REMOVE_CONSTRUCTOR_INGREDIENT} from "../../services/actions/constructorIngredients";
+import {REMOVE_CONSTRUCTOR_INGREDIENT} from "../../services/actions/constructor/constructorIngredients";
 
 const typeName = {top: " (верх)", bottom: ' (низ)', null: ''}
 

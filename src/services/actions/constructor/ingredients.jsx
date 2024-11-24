@@ -1,4 +1,4 @@
-import {BASE_API_URL, request} from "../../utils/request";
+import {BASE_API_URL, request} from "../../../utils/request";
 
 export const GET_INGREDIENTS_FAILED = 'GET_INGREDIENTS_FAILED';
 export const GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS_REQUEST';

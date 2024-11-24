@@ -42,3 +42,19 @@
     color: white;
     transition: color linear 0.3s;
 }
+
+.inactiveLink {
+    composes: text text_type_main-default from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    transition: color linear 0.3s;
+    cursor: pointer;
+    color: #8585AD;
+}
+
+.inactiveLink:hover {
+    color: white;
+}
+
+.activeLink {
+    composes: inactiveLink;
+    color: white;
+}

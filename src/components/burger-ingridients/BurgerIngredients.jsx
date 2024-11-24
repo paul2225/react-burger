@@ -5,10 +5,11 @@ import styles from "./burger-ingredients.module.css";
 import IngredientsContainer from "./IngredientsContainer";
 import Modal from "../modal/Modal";
 import IngredientDetails from "../ingredient-details/IngredientDetails";
-import {getIngredients} from "../../services/actions/ingredients";
-import {REMOVE_VIEWED_INGREDIENT} from "../../services/actions/viewedIngredient";
+import {getIngredients} from "../../services/actions/constructor/ingredients";
+import {REMOVE_VIEWED_INGREDIENT, SET_VIEWED_INGREDIENT} from "../../services/actions/constructor/viewedIngredient";
+import {ingredientShape} from "../../types/IngredientPropTypes";
 
-function BurgerIngredients() {
+function BurgerIngredients(props) {
     const [current, setCurrent] = useState('bun');
     const viewedIngredient = useSelector(state => state.viewedIngredient.ingredient);
     const ingredientsByType = useSelector(state => state.ingredients.ingredientsByType);
@@ -34,7 +35,10 @@ function BurgerIngredients() {
 
     useEffect(() => {
         dispatch(getIngredients());
-    }, [dispatch]);
+        if (props.viewedIngredient != null) {
+            dispatch({type: SET_VIEWED_INGREDIENT, viewedIngredient: props.viewedIngredient})
+        }
+    }, [dispatch, props.viewedIngredient]);
 
     const handleScroll = useCallback(() => {
         const sections = Object.keys(sectionRefs);
@@ -91,12 +95,19 @@ function BurgerIngredients() {
             </div>
             {viewedIngredient !== null &&
                 <Modal
-                    close={() => dispatch({type: REMOVE_VIEWED_INGREDIENT})}
+                    close={() => {
+                        dispatch({type: REMOVE_VIEWED_INGREDIENT});
+                        window.history.pushState({}, '', '/');
+                    }}
                     modal={<IngredientDetails ingredient={viewedIngredient}/>}
                 />
             }
         </>
     );
+}
+
+BurgerIngredients.propTypes = {
+    viewedIngredient: ingredientShape.isRequired,
 }
 
 export default BurgerIngredients;

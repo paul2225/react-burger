@@ -12,7 +12,7 @@ function AppHeader() {
                     <HeaderButton
                         buttonIcon={<BurgerIcon type="secondary"/>}
                         buttonText="Конструктор"
-                        link={'/constructor'}
+                        link={'/'}
                     />
                     <HeaderButton
                         buttonIcon={<ListIcon type="secondary"/>}
@@ -25,7 +25,7 @@ function AppHeader() {
                 </Link>
                 <nav className={styles.rightButtons}>
                     <HeaderButton buttonIcon={<ProfileIcon type="secondary"/>} buttonText="Личный кабинет"
-                                  link={'/me'}/>
+                                  link={'/profile'}/>
                 </nav>
             </header>
         </section>
