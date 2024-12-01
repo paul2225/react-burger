@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import styles from './app.module.css';
 import AppHeader from "../app-header/AppHeader";
 import BurgerIngredients from "../burger-ingridients/BurgerIngredients";
 import BurgerConstructor from "../burger-constructor/BurgerConstructor";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import RegistrationPage from "../../pages/security-pages/registration-page/RegistrationPage";
 import LoginPage from "../../pages/security-pages/login-page/LoginPage";
 import ForgotPasswordPage from "../../pages/security-pages/forgot-password/ForgotPasswordPage";
@@ -14,6 +14,10 @@ import ProfilePage from "../../pages/profile-page/ProfilePage";
 import ProtectedRoute from "../security/protected-route/ProtectedRoute";
 import IngredientDetailsPage from "../../pages/ingredient-details-page/IngredientDetailsPage";
 import {ingredientShape} from "../../types/IngredientPropTypes";
+import {getIngredients} from "../../services/actions/constructor/ingredients";
+import {useDispatch} from "react-redux";
+import IngredientDetails from "../ingredient-details/IngredientDetails";
+import Modal from "../modal/Modal";
 
 function MainPage(props) {
     return (
@@ -31,13 +35,20 @@ function MainPage(props) {
 }
 
 function App() {
-    const viewedIngredientRaw = sessionStorage.getItem('viewedIngredient');
-    const viewedIngredient = viewedIngredientRaw ? JSON.parse(viewedIngredientRaw) : null;
+    const location = useLocation();
+    const navigate = useNavigate();
+    const background = location.state?.background;
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getIngredients());
+    }, [dispatch]);
 
     return (
         <DndProvider backend={HTML5Backend}>
             <AppHeader/>
-            <Routes>
+            <Routes location={background || location}>
                 <Route path="/profile" element={<ProtectedRoute element={<ProfilePage/>}/>}/>
                 <Route path="/profile/*" element={<ProtectedRoute element={<ProfilePage/>}/>}/>
 
@@ -50,20 +61,26 @@ function App() {
                        element={<ProtectedRoute unauthorizedOnly={true} element={<PasswordResetPage/>}/>}/>
 
                 <Route path="*" element={<MainPage/>}/>
-                <Route path="/ingredients/:id"
-                       element={viewedIngredient == null
-                           ? <IngredientDetailsPage/>
-                           : <MainPage viewedIngredient={viewedIngredient}/>
-                       }
-                />
+                <Route path="/ingredients/:id" element={<IngredientDetailsPage/>}/>
             </Routes>
+
+            {background && (
+                <Routes>
+                    <Route path="/ingredients/:id" element={
+                        <Modal
+                            close={() => navigate(-1)}
+                            modal={<IngredientDetails/>}
+                        />
+                    }/>
+                </Routes>
+            )}
 
         </DndProvider>
     );
 }
 
 MainPage.propTypes = {
-    viewedIngredient: ingredientShape.isRequired,
+    viewedIngredient: ingredientShape,
 }
 
 export default App;

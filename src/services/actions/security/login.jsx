@@ -1,11 +1,11 @@
-import {BASE_API_URL, request} from "../../../utils/request";
+import {request} from "../../../utils/requests";
 import Cookies from 'js-cookie';
 
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
-const LOGIN_URL = BASE_API_URL + '/auth/login';
+const LOGIN_ENDPOINT = 'auth/login';
 
 export const login = (email, password) => {
     return async function (dispatch) {
@@ -14,7 +14,7 @@ export const login = (email, password) => {
         const timeoutId = setTimeout(() => controller.abort(), 3000);
 
         dispatch({type: LOGIN_REQUEST})
-        return await request(LOGIN_URL, {
+        return await request(LOGIN_ENDPOINT, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

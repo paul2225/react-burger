@@ -1,27 +1,22 @@
 import React from 'react';
-import {useDispatch} from "react-redux";
 import {useDrag} from "react-dnd";
 import styles from './ingredient-card.module.css';
 import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {ingredientShape} from "../../types/IngredientPropTypes";
-import {SET_VIEWED_INGREDIENT} from "../../services/actions/constructor/viewedIngredient";
 import PropTypes from "prop-types";
+import {Link, useLocation} from "react-router-dom";
 
 function IngredientCard(props) {
-    const dispatch = useDispatch()
+    const location = useLocation();
 
     const [, dragRef] = useDrag({
         type: "ingredient",
         item: props.ingredient
     });
 
-    function handleClick() {
-        dispatch({type: SET_VIEWED_INGREDIENT, viewedIngredient: props.ingredient})
-        window.history.pushState({}, '', '/ingredients/' + props.ingredient._id);
-    }
-
     return (
-        <article ref={dragRef} className={styles.card} onClick={handleClick}>
+        <Link to={`/ingredients/${props.ingredient._id}`} state={{background: location}} ref={dragRef}
+              className={styles.card}>
             <img
                 src={props.ingredient.image}
                 className={styles.img}
@@ -38,7 +33,7 @@ function IngredientCard(props) {
             </div>
 
             <h3 className={styles.name}>{props.ingredient.name}</h3>
-        </article>
+        </Link>
     );
 }
 

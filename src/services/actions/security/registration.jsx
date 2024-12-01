@@ -1,11 +1,11 @@
-import {BASE_API_URL, request} from "../../../utils/request";
+import {request} from "../../../utils/requests";
 import Cookies from 'js-cookie';
 
 export const REGISTRATION_FAILED = 'REGISTRATION_FAILED';
 export const REGISTRATION_REQUEST = 'REGISTRATION_REQUEST';
 export const REGISTRATION_SUCCESS = 'REGISTRATION_SUCCESS';
 
-const REGISTRATION_URL = BASE_API_URL + '/auth/register';
+const REGISTRATION_ENDPOINT = 'auth/register';
 
 export const registration = (name, email, password) => {
     return async function (dispatch) {
@@ -14,7 +14,7 @@ export const registration = (name, email, password) => {
         const timeoutId = setTimeout(() => controller.abort(), 3000);
 
         dispatch({type: REGISTRATION_REQUEST})
-        return await request(REGISTRATION_URL, {
+        return await request(REGISTRATION_ENDPOINT, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

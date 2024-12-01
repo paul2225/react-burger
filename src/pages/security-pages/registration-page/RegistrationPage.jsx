@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback} from 'react';
 import {Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "../common-page.module.css";
 import {Link, useNavigate} from "react-router-dom";
@@ -12,23 +12,13 @@ function RegistrationPage() {
     const [password, setPassword] = React.useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = useCallback(async () => {
+    const handleSubmit = useCallback(async (e) => {
+        e.preventDefault();
         const result = dispatch(registration(name, email, password))
         if (result) {
             navigate('/login')
         }
     }, [navigate, dispatch, name, email, password]);
-
-    useEffect(() => {
-        const handleEnterPress = (event) => {
-            if (event.key === "Enter") {
-                handleSubmit();
-            }
-        };
-
-        document.addEventListener("keydown", handleEnterPress);
-        return () => document.removeEventListener("keydown", handleEnterPress);
-    }, [handleSubmit]);
 
     function handleNameChange(e) {
         setName(e.target.value);
@@ -45,7 +35,7 @@ function RegistrationPage() {
     return (
         <>
             <section className={styles.container}>
-                <section className={styles.body}>
+                <form className={styles.body} onSubmit={handleSubmit}>
                     <p className={styles.header}>Регистрация</p>
                     <Input
                         type={'text'}
@@ -71,10 +61,10 @@ function RegistrationPage() {
                         name={'Пароль'}
                         extraClass="mb-2"
                     />
-                    <Button htmlType="button" type="primary" size="large" onClick={handleSubmit}>
+                    <Button htmlType="submit" type="primary" size="large">
                         Зарегистрироваться
                     </Button>
-                </section>
+                </form>
                 <section className={styles.footerContainer}>
                     <p className={styles.bottomText}>Уже зарегистрированы? <Link to="/login">Войти</Link></p>
                 </section>

@@ -1,7 +1,6 @@
 import {combineReducers} from 'redux'
 import {ingredientsReducer} from "./constructor/ingredients";
 import {constructorIngredientsReducer} from "./constructor/constructorIngredients";
-import {viewedIngredientReducer} from "./constructor/viewedIngredient";
 import {createdOrderReducer} from "./constructor/createdOrder";
 import {forgotPasswordReducer} from "./security/forgotPassword";
 import {resetPasswordReducer} from "./security/resetPassword";
@@ -14,7 +13,6 @@ import {getUserInfoReducer} from "./profile/getUserInfo";
 export const rootReducer = combineReducers({
     ingredients: ingredientsReducer,
     constructorIngredients: constructorIngredientsReducer,
-    viewedIngredient: viewedIngredientReducer,
     createdOrder: createdOrderReducer,
     forgotPassword: forgotPasswordReducer,
     resetPassword: resetPasswordReducer,

@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback} from 'react';
 import {Button, EmailInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "../common-page.module.css";
 import {Link, useNavigate} from "react-router-dom";
@@ -14,7 +14,8 @@ function ForgotPasswordPage() {
         setEmail(e.target.value);
     }
 
-    const handleSubmit = useCallback(async () => {
+    const handleSubmit = useCallback(async (e) => {
+        e.preventDefault();
         const success = await dispatch(forgotPassword(email));
 
         if (success) {
@@ -22,21 +23,10 @@ function ForgotPasswordPage() {
         }
     }, [dispatch, navigate, email]);
 
-    useEffect(() => {
-        const handleEnterPress = (event) => {
-            if (event.key === "Enter") {
-                handleSubmit();
-            }
-        };
-
-        document.addEventListener("keydown", handleEnterPress);
-        return () => document.removeEventListener("keydown", handleEnterPress);
-    }, [handleSubmit]);
-
     return (
         <>
             <section className={styles.container}>
-                <section className={styles.body}>
+                <form className={styles.body} onSubmit={handleSubmit}>
                     <p className={styles.header}>Восстановление пароля</p>
                     <EmailInput
                         onChange={handleChange}
@@ -46,14 +36,13 @@ function ForgotPasswordPage() {
                         isIcon={false}
                     />
                     <Button
-                        htmlType="button"
+                        htmlType="submit"
                         type="primary"
                         size="large"
-                        onClick={handleSubmit}
                     >
                         Восстановить
                     </Button>
-                </section>
+                </form>
                 <section className={styles.footerContainer}>
                     <p className={styles.bottomText}>Вспомнили пароль? <Link to="/login">Войти</Link></p>
                 </section>

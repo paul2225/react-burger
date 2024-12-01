@@ -1,10 +1,10 @@
-import {BASE_API_URL, request} from "../../../utils/request";
+import {request} from "../../../utils/requests";
 
 export const RESET_PASSWORD_FAILED = 'RESET_PASSWORD_FAILED';
 export const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST';
 export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
 
-const RESET_PASSWORD_URL = BASE_API_URL + '/password-reset/reset';
+const RESET_PASSWORD_ENDPOINT = 'password-reset/reset';
 
 export const resetPassword = (password, token) => {
     return async function (dispatch) {
@@ -13,7 +13,7 @@ export const resetPassword = (password, token) => {
         const timeoutId = setTimeout(() => controller.abort(), 3000);
 
         dispatch({type: RESET_PASSWORD_REQUEST})
-        return await request(RESET_PASSWORD_URL, {
+        return await request(RESET_PASSWORD_ENDPOINT, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

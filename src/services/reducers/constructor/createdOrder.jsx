@@ -32,7 +32,7 @@ export const createdOrderReducer = (state = initialState, action) => {
             return {...state, createdOrderFailed: true, createdOrderRequest: false};
         }
         case CLEAR_CREATED_ORDER: {
-            return {...state, order: null};
+            return {...state, createdOrderFailed: false, createdOrderRequest: false, order: null};
         }
         default: {
             return state;

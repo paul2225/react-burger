@@ -1,5 +1,5 @@
 import {
-    ADD_CONSTRUCTOR_INGREDIENT,
+    ADD_CONSTRUCTOR_INGREDIENT, CLEAR_CONSTRUCTOR_INGREDIENT,
     REMOVE_CONSTRUCTOR_INGREDIENT,
     UPDATE_CONSTRUCTOR_INGREDIENTS
 } from "../../actions/constructor/constructorIngredients";
@@ -47,6 +47,12 @@ export const constructorIngredientsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ingredients: state.ingredients.filter((ingredient, index) => index !== action.index)
+            };
+        }
+        case CLEAR_CONSTRUCTOR_INGREDIENT: {
+            return {
+                ...state,
+                ingredients: []
             };
         }
         default: {
