@@ -61,7 +61,7 @@ function BurgerConstructor() {
         const accessToken = Cookies.get('accessToken');
 
         if (accessToken === undefined) {
-            navigate('/login')
+            return navigate('/login')
         }
 
         dispatch(getCreatedOrder(ingredients.map(ingredient => ingredient._id)))
