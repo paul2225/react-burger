@@ -1,12 +1,24 @@
 import {combineReducers} from 'redux'
-import {ingredientsReducer} from "./ingredients";
-import {constructorIngredientsReducer} from "./constructorIngredients";
-import {viewedIngredientReducer} from "./viewedIngredient";
-import {createdOrderReducer} from "./createdOrder";
+import {ingredientsReducer} from "./constructor/ingredients";
+import {constructorIngredientsReducer} from "./constructor/constructorIngredients";
+import {createdOrderReducer} from "./constructor/createdOrder";
+import {forgotPasswordReducer} from "./security/forgotPassword";
+import {resetPasswordReducer} from "./security/resetPassword";
+import {registrationReducer} from "./security/registration";
+import {loginReducer} from "./security/login";
+import {logoutReducer} from "./security/logout";
+import {saveUserInfoReducer} from "./profile/saveUserInfo";
+import {getUserInfoReducer} from "./profile/getUserInfo";
 
 export const rootReducer = combineReducers({
     ingredients: ingredientsReducer,
     constructorIngredients: constructorIngredientsReducer,
-    viewedIngredient: viewedIngredientReducer,
-    createdOrder: createdOrderReducer
+    createdOrder: createdOrderReducer,
+    forgotPassword: forgotPasswordReducer,
+    resetPassword: resetPasswordReducer,
+    registration: registrationReducer,
+    login: loginReducer,
+    logout: logoutReducer,
+    getUserInfo: getUserInfoReducer,
+    saveUserInfo: saveUserInfoReducer
 });

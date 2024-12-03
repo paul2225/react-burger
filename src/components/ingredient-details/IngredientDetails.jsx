@@ -1,8 +1,18 @@
 import React from 'react';
 import styles from './ingridient-details.module.css';
-import {ingredientShape} from "../../types/IngredientPropTypes";
+import {useParams} from "react-router-dom";
+import {useSelector} from "react-redux";
 
-function IngredientDetails(props) {
+function IngredientDetails() {
+    const {id} = useParams();
+
+    const ingredientsById = useSelector(state => state.ingredients.ingredientsById);
+    const ingredient = ingredientsById[id];
+
+    if (!ingredientsById[id]) {
+        return null;
+    }
+
     return (
         <section className={styles.ingredientDetails}>
             <header className={styles.header}>
@@ -10,35 +20,31 @@ function IngredientDetails(props) {
             </header>
             <img
                 className={styles.image}
-                src={props.ingredient.image}
-                alt={`Изображение ингредиента: ${props.ingredient.name}`}
+                src={ingredient.image}
+                alt={`Изображение ингредиента: ${ingredient.name}`}
             />
 
-            <h3 className={styles.ingredientName}>{props.ingredient.name}</h3>
+            <h3 className={styles.ingredientName}>{ingredient.name}</h3>
             <dl className={styles.ingredientsInfo}>
                 <div className={styles.ingredientInfo}>
                     <dt className={styles.infoName}>Калории, ккал</dt>
-                    <dd className={styles.infoData}>{props.ingredient.calories}</dd>
+                    <dd className={styles.infoData}>{ingredient.calories}</dd>
                 </div>
                 <div className={styles.ingredientInfo}>
                     <dt className={styles.infoName}>Белки, г</dt>
-                    <dd className={styles.infoData}>{props.ingredient.proteins}</dd>
+                    <dd className={styles.infoData}>{ingredient.proteins}</dd>
                 </div>
                 <div className={styles.ingredientInfo}>
                     <dt className={styles.infoName}>Жиры, г</dt>
-                    <dd className={styles.infoData}>{props.ingredient.fat}</dd>
+                    <dd className={styles.infoData}>{ingredient.fat}</dd>
                 </div>
                 <div className={styles.ingredientInfo}>
                     <dt className={styles.infoName}>Углеводы, г</dt>
-                    <dd className={styles.infoData}>{props.ingredient.carbohydrates}</dd>
+                    <dd className={styles.infoData}>{ingredient.carbohydrates}</dd>
                 </div>
             </dl>
         </section>
     )
-}
-
-IngredientDetails.propTypes = {
-    ingredient: ingredientShape.isRequired,
 }
 
 export default IngredientDetails;

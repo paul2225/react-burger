@@ -2,7 +2,7 @@ import {
     GET_INGREDIENTS_FAILED,
     GET_INGREDIENTS_REQUEST,
     GET_INGREDIENTS_SUCCESS
-} from '../actions/ingredients';
+} from '../../actions/constructor/ingredients';
 
 const initialState = {
     ingredientsByType: {
@@ -10,6 +10,7 @@ const initialState = {
         main: [],
         sauce: []
     },
+    ingredientsById: {},
     ingredientsRequest: false,
     ingredientsFailed: false,
 };
@@ -29,10 +30,14 @@ export const ingredientsReducer = (state = initialState, action) => {
                 sauce: action.ingredients.filter(item => item.type === 'sauce')
             }
 
+            const ingredientsById = {};
+            action.ingredients.map(item => ingredientsById[item._id] = item);
+
             return {
                 ...state,
                 ingredientsFailed: false,
                 ingredientsByType: ingredientsByType,
+                ingredientsById: ingredientsById,
                 ingredientsRequest: false
             };
         }

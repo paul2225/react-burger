@@ -9,14 +9,19 @@ import Ingredient from "./Ingredient";
 import {
     ADD_CONSTRUCTOR_INGREDIENT,
     UPDATE_CONSTRUCTOR_INGREDIENTS
-} from "../../services/actions/constructorIngredients";
-import {CLEAR_CREATED_ORDER, getCreatedOrder} from "../../services/actions/createdOrder";
+} from "../../services/actions/constructor/constructorIngredients";
+import {CLEAR_CREATED_ORDER, getCreatedOrder} from "../../services/actions/constructor/createdOrder";
+import Cookies from "js-cookie";
+import {useNavigate} from "react-router-dom";
+import Loader from "../loader/Loader";
 
 function BurgerConstructor() {
     const ingredients = useSelector(state => state.constructorIngredients.ingredients);
     const createdOrder = useSelector(state => state.createdOrder.order);
+    const createdOrderRequest = useSelector(state => state.createdOrder.createdOrderRequest);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate()
 
     const moveIngredient = (draggedIndex, targetIndex) => {
         const updatedIngredients = [...ingredients];
@@ -51,6 +56,17 @@ function BurgerConstructor() {
         [ingredients]
     );
 
+    function handleSubmit(e) {
+        e.preventDefault();
+        const accessToken = Cookies.get('accessToken');
+
+        if (accessToken === undefined) {
+            return navigate('/login')
+        }
+
+        dispatch(getCreatedOrder(ingredients.map(ingredient => ingredient._id)))
+    }
+
     return (
         <section className={styles.constructor}>
             <div className={styles.ingredients} ref={dropTarget}>
@@ -77,24 +93,25 @@ function BurgerConstructor() {
                     );
                 })}
             </div>
-            <div className={styles.orderDetails}>
+
+            <form className={styles.orderDetails} onSubmit={handleSubmit}>
                 <div className={styles.price}>
                     <p className="text text_type_digits-medium">{totalSum}</p>
                     <CurrencyIcon type="primary"/>
                 </div>
                 <Button
-                    htmlType="button"
+                    htmlType="submit"
                     type="primary"
                     size="large"
-                    onClick={() => dispatch(getCreatedOrder(ingredients.map(ingredient => ingredient._id)))}
+                    disabled={ingredients.filter(ingredient => ingredient.type === 'bun').length === 0}
                 >
                     Оформить заказ
                 </Button>
-            </div>
-            {createdOrder != null && <Modal
-                modal={<OrderDetails order={createdOrder}/>}
-                close={() => dispatch({type: CLEAR_CREATED_ORDER})}
-            />}
+            </form>
+            {createdOrder != null
+                && <Modal modal={<OrderDetails order={createdOrder}/>} close={() => dispatch({type: CLEAR_CREATED_ORDER})}/>
+            }
+            {createdOrderRequest === true && <Loader />}
         </section>
     )
 }

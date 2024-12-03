@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px);
+    min-height: 700px;
+    flex-grow: 1;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+}
+
+.footerContainer {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.header {
+    composes: text text_type_main-medium from '../../../node_modules/@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+}
+
+.bottomText {
+    composes: text text_type_main-small text_color_inactive from '../../../node_modules/@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    text-align: center;
+}

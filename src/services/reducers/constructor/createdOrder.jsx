@@ -3,7 +3,7 @@ import {
     GET_CREATED_ORDER_FAILED,
     GET_CREATED_ORDER_REQUEST,
     GET_CREATED_ORDER_SUCCESS
-} from "../actions/createdOrder";
+} from "../../actions/constructor/createdOrder";
 
 
 const initialState = {
@@ -32,7 +32,7 @@ export const createdOrderReducer = (state = initialState, action) => {
             return {...state, createdOrderFailed: true, createdOrderRequest: false};
         }
         case CLEAR_CREATED_ORDER: {
-            return {...state, order: null};
+            return {...state, createdOrderFailed: false, createdOrderRequest: false, order: null};
         }
         default: {
             return state;

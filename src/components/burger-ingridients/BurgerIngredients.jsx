@@ -1,19 +1,13 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./burger-ingredients.module.css";
 import IngredientsContainer from "./IngredientsContainer";
-import Modal from "../modal/Modal";
-import IngredientDetails from "../ingredient-details/IngredientDetails";
-import {getIngredients} from "../../services/actions/ingredients";
-import {REMOVE_VIEWED_INGREDIENT} from "../../services/actions/viewedIngredient";
+import {ingredientShape} from "../../types/IngredientPropTypes";
 
 function BurgerIngredients() {
     const [current, setCurrent] = useState('bun');
-    const viewedIngredient = useSelector(state => state.viewedIngredient.ingredient);
     const ingredientsByType = useSelector(state => state.ingredients.ingredientsByType);
-
-    const dispatch = useDispatch();
 
     const ingredientsListRef = useRef(null);
     const bunRef = useRef(null);
@@ -31,10 +25,6 @@ function BurgerIngredients() {
         main: 'Начинки',
         sauce: 'Соусы'
     };
-
-    useEffect(() => {
-        dispatch(getIngredients());
-    }, [dispatch]);
 
     const handleScroll = useCallback(() => {
         const sections = Object.keys(sectionRefs);
@@ -89,14 +79,12 @@ function BurgerIngredients() {
                     <IngredientsContainer header={typeNames.main} ingredients={ingredientsByType.main}/>
                 </div>
             </div>
-            {viewedIngredient !== null &&
-                <Modal
-                    close={() => dispatch({type: REMOVE_VIEWED_INGREDIENT})}
-                    modal={<IngredientDetails ingredient={viewedIngredient}/>}
-                />
-            }
         </>
     );
+}
+
+BurgerIngredients.propTypes = {
+    viewedIngredient: ingredientShape,
 }
 
 export default BurgerIngredients;
