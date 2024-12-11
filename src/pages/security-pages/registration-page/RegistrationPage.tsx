@@ -12,7 +12,7 @@ function RegistrationPage() {
     const [password, setPassword] = React.useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = useCallback(async (e: React.SyntheticEvent) => {
+    const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const result = await dispatch(registration(name, email, password))
         if (result) {
@@ -47,8 +47,6 @@ function RegistrationPage() {
                         errorText={'Ошибка'}
                         size={'default'}
                         extraClass="ml-1"
-                        onPointerEnterCapture={undefined}
-                        onPointerLeaveCapture={undefined}
                     />
                     <EmailInput
                         onChange={handleEmailChange}

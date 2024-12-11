@@ -14,7 +14,7 @@ function ForgotPasswordPage() {
         setEmail(e.target.value);
     }
 
-    const handleSubmit = useCallback(async (e: React.SyntheticEvent) => {
+    const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const success = await dispatch(forgotPassword(email));
 

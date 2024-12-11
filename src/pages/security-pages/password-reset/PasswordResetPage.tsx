@@ -19,7 +19,7 @@ function PasswordResetPage() {
         setToken(e.target.value);
     }
 
-    const handleSubmit = useCallback(async (e: React.SyntheticEvent) => {
+    const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const success = await dispatch(resetPassword(password, token));
 
@@ -50,8 +50,6 @@ function PasswordResetPage() {
                         errorText={'Ошибка'}
                         size={'default'}
                         extraClass="ml-1"
-                        onPointerEnterCapture={undefined}
-                        onPointerLeaveCapture={undefined}
                     />
                     <Button htmlType="submit" type="primary" size="large">
                         Сохранить

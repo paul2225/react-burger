@@ -18,8 +18,7 @@ function ProfilePage() {
 
     const [buttonMode, setButtonMode] = useState<{ [name: string]: boolean }>({
         'name': true,
-        'email': true,
-        'password': true
+        'email': true
     });
 
     const [name, setName] = useState('');
@@ -83,8 +82,6 @@ function ProfilePage() {
                         onChange={e => setName(e.target.value)}
                         disabled={buttonMode['name']}
                         onIconClick={() => changeButtonMode('name')}
-                        onPointerEnterCapture={undefined}
-                        onPointerLeaveCapture={undefined}
                     />
                     <Input
                         type={'text'}
@@ -99,17 +96,13 @@ function ProfilePage() {
                         onChange={e => setEmail(e.target.value)}
                         disabled={buttonMode['email']}
                         onIconClick={() => changeButtonMode('email')}
-                        onPointerEnterCapture={undefined}
-                        onPointerLeaveCapture={undefined}
                     />
                     <PasswordInput
                         name={'password'}
-                        icon="EditIcon"
                         placeholder={'Пароль'}
                         value={password}
                         onChange={e => setPassword(e.target.value)}
-                        disabled={buttonMode['password']}
-                        onClick={() => changeButtonMode('password')}
+                        disabled={false}
                     />
                 </section>
                 {dataChanged() && (

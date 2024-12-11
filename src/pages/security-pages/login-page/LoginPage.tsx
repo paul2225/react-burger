@@ -12,7 +12,7 @@ function LoginPage() {
     const navigate = useNavigate();
     const location = useLocation()
 
-    const handleSubmit = useCallback(async (e: React.SyntheticEvent) => {
+    const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const result = await dispatch(login(email, password))
         if (result) {

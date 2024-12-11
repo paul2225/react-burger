@@ -72,13 +72,13 @@ function BurgerIngredients() {
         <>
             <p className={styles.header}>Соберите бургер</p>
             <div className={styles.tabs}>
-                {ingredientTypes.map(ingredientType =>
-                    <Tab value={ingredientType} active={current === ingredientType}
+                {ingredientTypes.map((ingredientType, index) =>
+                    <Tab key={index} value={ingredientType} active={current === ingredientType}
                          onClick={() => handleTabClick(ingredientType)}>{typeNames[ingredientType]}</Tab>)}
             </div>
             <div ref={ingredientsListRef} className={styles.ingredientsList}>
-                {ingredientTypes.map(ingredientType =>
-                    <div ref={sectionRefs[ingredientType]} datatype={ingredientType}>
+                {ingredientTypes.map((ingredientType, index) =>
+                    <div key={index} ref={sectionRefs[ingredientType]} datatype={ingredientType}>
                         <IngredientsContainer header={typeNames[ingredientType]}
                                               ingredients={ingredientsByType[ingredientType]}/>
                     </div>
