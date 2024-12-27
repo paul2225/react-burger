@@ -1,7 +1,7 @@
 import {
     GET_INGREDIENTS_FAILED,
     GET_INGREDIENTS_REQUEST,
-    GET_INGREDIENTS_SUCCESS
+    GET_INGREDIENTS_SUCCESS, TIngredientsActions
 } from '../../actions/constructor/ingredients';
 import {IIngredient, IngredientType} from "../../../types/IIngredient";
 
@@ -15,14 +15,14 @@ type TIngredientsById = {
     [name: string]: IIngredient
 }
 
-type TInitialState = {
+type TIngredientsState = {
     ingredientsByType: TIngredientsByType,
     ingredientsById: TIngredientsById,
     ingredientsRequest: boolean,
     ingredientsFailed: boolean
 }
 
-const initialState: TInitialState = {
+const initialState: TIngredientsState = {
     ingredientsByType: {
         bun: [],
         main: [],
@@ -33,22 +33,7 @@ const initialState: TInitialState = {
     ingredientsFailed: false,
 };
 
-interface IGetIngredientsRequest {
-    type: typeof GET_INGREDIENTS_REQUEST;
-}
-
-interface IGetIngredientsSuccess {
-    type: typeof GET_INGREDIENTS_SUCCESS;
-    ingredients: IIngredient[]; // массив ингредиентов
-}
-
-interface IGetIngredientsFailed {
-    type: typeof GET_INGREDIENTS_FAILED;
-}
-
-type TIngredientsActions = IGetIngredientsRequest | IGetIngredientsSuccess | IGetIngredientsFailed;
-
-export const ingredientsReducer = (state = initialState, action: TIngredientsActions) => {
+export const ingredientsReducer = (state = initialState, action: TIngredientsActions): TIngredientsState => {
     switch (action.type) {
         case GET_INGREDIENTS_REQUEST: {
             return {

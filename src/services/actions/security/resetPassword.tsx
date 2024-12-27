@@ -1,28 +1,28 @@
 import {request} from "../../../utils/requests";
 import {Dispatch} from "redux";
 
-export const RESET_PASSWORD_FAILED = 'RESET_PASSWORD_FAILED';
-export const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST';
-export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
+export const RESET_PASSWORD_FAILED: 'RESET_PASSWORD_FAILED' = 'RESET_PASSWORD_FAILED';
+export const RESET_PASSWORD_REQUEST: 'RESET_PASSWORD_REQUEST' = 'RESET_PASSWORD_REQUEST';
+export const RESET_PASSWORD_SUCCESS: 'RESET_PASSWORD_SUCCESS' = 'RESET_PASSWORD_SUCCESS';
 
-interface ResetPasswordFailedAction {
+interface IResetPasswordFailedAction {
     type: typeof RESET_PASSWORD_FAILED;
 }
 
-interface ResetPasswordRequestAction {
+interface IResetPasswordRequestAction {
     type: typeof RESET_PASSWORD_REQUEST;
 }
 
-interface ResetPasswordSuccessAction {
+interface IResetPasswordSuccessAction {
     type: typeof RESET_PASSWORD_SUCCESS;
 }
 
-export type ResetPasswordActions = ResetPasswordFailedAction | ResetPasswordRequestAction | ResetPasswordSuccessAction;
+export type TResetPasswordActions = IResetPasswordFailedAction | IResetPasswordRequestAction | IResetPasswordSuccessAction;
 
 const RESET_PASSWORD_ENDPOINT = 'password-reset/reset';
 
 export const resetPassword = (password: string, token: string) => {
-    return async function (dispatch: Dispatch<ResetPasswordActions>) {
+    return async function (dispatch: Dispatch<TResetPasswordActions>) {
         const controller = new AbortController();
         const signal = controller.signal;
         const timeoutId = setTimeout(() => controller.abort(), 3000);

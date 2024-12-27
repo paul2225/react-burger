@@ -2,17 +2,17 @@ import {
     GET_USER_INFO_FAILED,
     GET_USER_INFO_REQUEST,
     GET_USER_INFO_SUCCESS,
-    GetUserInfoActions
+    TGetUserInfoActions
 } from "../../actions/profile/getUserInfo";
 import {IUserInfo} from "../../../types/IUserInfo";
 
-type TInitialState = {
+type TGetUserInfoState = {
     getUserInformationRequest: boolean,
     getUserInformationFailed: boolean,
     userInfo: IUserInfo
 }
 
-const initialState: TInitialState = {
+const initialState: TGetUserInfoState = {
     getUserInformationRequest: false,
     getUserInformationFailed: false,
     userInfo: {
@@ -21,7 +21,7 @@ const initialState: TInitialState = {
     }
 };
 
-export const getUserInfoReducer = (state = initialState, action: GetUserInfoActions) => {
+export const getUserInfoReducer = (state = initialState, action: TGetUserInfoActions): TGetUserInfoState => {
     switch (action.type) {
         case GET_USER_INFO_REQUEST: {
             return {

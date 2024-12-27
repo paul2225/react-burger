@@ -1,31 +1,31 @@
 import {request} from "../../../utils/requests";
 import {Dispatch} from "redux";
 
-export const FORGOT_PASSWORD_FAILED = 'FORGOT_PASSWORD_FAILED';
-export const FORGOT_PASSWORD_REQUEST = 'FORGOT_PASSWORD_REQUEST';
-export const FORGOT_PASSWORD_SUCCESS = 'FORGOT_PASSWORD_SUCCESS';
+export const FORGOT_PASSWORD_FAILED: 'FORGOT_PASSWORD_FAILED' = 'FORGOT_PASSWORD_FAILED';
+export const FORGOT_PASSWORD_REQUEST: 'FORGOT_PASSWORD_REQUEST' = 'FORGOT_PASSWORD_REQUEST';
+export const FORGOT_PASSWORD_SUCCESS: 'FORGOT_PASSWORD_SUCCESS' = 'FORGOT_PASSWORD_SUCCESS';
 
-interface ForgotPasswordFailedAction {
+interface IForgotPasswordFailedAction {
     type: typeof FORGOT_PASSWORD_FAILED;
 }
 
-interface ForgotPasswordRequestAction {
+interface IForgotPasswordRequestAction {
     type: typeof FORGOT_PASSWORD_REQUEST
 }
 
-interface ForgotPasswordSuccessAction {
+interface IForgotPasswordSuccessAction {
     type: typeof FORGOT_PASSWORD_SUCCESS
 }
 
-export type ForgotPasswordActions =
-    ForgotPasswordFailedAction
-    | ForgotPasswordRequestAction
-    | ForgotPasswordSuccessAction;
+export type TForgotPasswordActions =
+    IForgotPasswordFailedAction
+    | IForgotPasswordRequestAction
+    | IForgotPasswordSuccessAction;
 
 const FORGOT_PASSWORD_ENDPOINT = 'password-reset';
 
 export const forgotPassword = (email: string) => {
-    return async function (dispatch: Dispatch<ForgotPasswordActions>) {
+    return async function (dispatch: Dispatch<TForgotPasswordActions>) {
         const controller = new AbortController();
         const signal = controller.signal;
         const timeoutId = setTimeout(() => controller.abort(), 3000);

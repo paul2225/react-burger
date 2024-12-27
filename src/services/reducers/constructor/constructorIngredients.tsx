@@ -1,21 +1,24 @@
 import {
     ADD_CONSTRUCTOR_INGREDIENT,
     CLEAR_CONSTRUCTOR_INGREDIENT,
-    ConstructorIngredientsActions,
+    TConstructorIngredientsActions,
     REMOVE_CONSTRUCTOR_INGREDIENT,
     UPDATE_CONSTRUCTOR_INGREDIENTS
 } from "../../actions/constructor/constructorIngredients";
 import {IIngredient} from "../../../types/IIngredient";
 
-type TInitialState = {
+type TConstructorIngredientsState = {
     ingredients: ReadonlyArray<IIngredient>;
 }
 
-const initialState: TInitialState = {
+const initialState: TConstructorIngredientsState = {
     ingredients: [],
 };
 
-export const constructorIngredientsReducer = (state = initialState, action: ConstructorIngredientsActions) => {
+export const constructorIngredientsReducer = (
+    state: TConstructorIngredientsState = initialState,
+    action: TConstructorIngredientsActions
+): TConstructorIngredientsState => {
     switch (action.type) {
         case UPDATE_CONSTRUCTOR_INGREDIENTS: {
             return {
@@ -47,7 +50,7 @@ export const constructorIngredientsReducer = (state = initialState, action: Cons
 
             return {
                 ...state,
-                ingredients: [...newIngredients]
+                ingredients: [...newIngredients],
             };
         }
         case REMOVE_CONSTRUCTOR_INGREDIENT: {
