@@ -12,11 +12,15 @@ import ForgotPasswordPage from "../../pages/security-pages/forgot-password/Forgo
 import PasswordResetPage from "../../pages/security-pages/password-reset/PasswordResetPage";
 import ProfilePage from "../../pages/profile-page/ProfilePage";
 import ProtectedRoute from "../security/protected-route/ProtectedRoute";
-import IngredientDetailsPage from "../../pages/ingredient-details-page/IngredientDetailsPage";
+import ModalPage from "../../pages/modal-page/ModalPage";
 import {getIngredients} from "../../services/actions/constructor/ingredients";
 import IngredientDetails from "../ingredient-details/IngredientDetails";
 import Modal from "../modal/Modal";
-import {useAppDispatch} from "../../index";
+import FeedPage from "../../pages/feed-page/FeedPage";
+import {useDispatch} from "../../index";
+import CompletedOrderDetails from "../orders-feed/completed-order-details/CompletedOrderDetails";
+import {ProfileEdit} from "../profile/ProfileEdit";
+import {OrdersFeed} from "../orders-feed/feed/OrdersFeed";
 
 function MainPage() {
     return (
@@ -36,9 +40,9 @@ function MainPage() {
 function App() {
     const location = useLocation();
     const navigate = useNavigate();
-    const background = location.state?.background;
+    const dispatch = useDispatch();
 
-    const dispatch = useAppDispatch()
+    const background = location.state?.background;
 
     useEffect(() => {
         dispatch(getIngredients());
@@ -48,8 +52,14 @@ function App() {
         <DndProvider backend={HTML5Backend}>
             <AppHeader/>
             <Routes location={background || location}>
-                <Route path="/profile" element={<ProtectedRoute element={<ProfilePage/>}/>}/>
-                <Route path="/profile/*" element={<ProtectedRoute element={<ProfilePage/>}/>}/>
+                <Route path="/feed" element={<FeedPage/>}/>
+                <Route path="/feed/:id" element={<ModalPage content={<CompletedOrderDetails/>}/>}/>
+
+                <Route path="/profile/orders" element={<ProfilePage content={<OrdersFeed usersOrdersOnly={true}/>}/>}/>
+                <Route path="/profile/orders/:id" element={<ModalPage content={<CompletedOrderDetails/>}/>}/>
+
+                <Route path="/profile" element={<ProtectedRoute element={<ProfilePage content={<ProfileEdit/>}/>}/>}/>
+                <Route path="/profile/*" element={<ProtectedRoute element={<ProfilePage content={<ProfileEdit/>}/>}/>}/>
 
                 <Route path="/register"
                        element={<ProtectedRoute unauthorizedOnly={true} element={<RegistrationPage/>}/>}/>
@@ -60,7 +70,7 @@ function App() {
                        element={<ProtectedRoute unauthorizedOnly={true} element={<PasswordResetPage/>}/>}/>
 
                 <Route path="*" element={<MainPage/>}/>
-                <Route path="/ingredients/:id" element={<IngredientDetailsPage/>}/>
+                <Route path="/ingredients/:id" element={<ModalPage content={<IngredientDetails/>}/>}/>
             </Routes>
 
             {background && (
@@ -69,6 +79,18 @@ function App() {
                         <Modal
                             close={() => navigate(-1)}
                             modal={<IngredientDetails/>}
+                        />
+                    }/>
+                    <Route path="/feed/:id" element={
+                        <Modal
+                            close={() => navigate(-1)}
+                            modal={<CompletedOrderDetails/>}
+                        />
+                    }/>
+                    <Route path="/profile/orders/:id" element={
+                        <Modal
+                            close={() => navigate(-1)}
+                            modal={<CompletedOrderDetails/>}
                         />
                     }/>
                 </Routes>

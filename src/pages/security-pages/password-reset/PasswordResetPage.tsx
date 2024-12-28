@@ -3,10 +3,10 @@ import {Button, Input, PasswordInput} from "@ya.praktikum/react-developer-burger
 import styles from "../common-page.module.css";
 import {Link, useNavigate} from "react-router-dom";
 import {resetPassword} from "../../../services/actions/security/resetPassword";
-import {useAppDispatch} from "../../../index";
+import {useDispatch} from "../../../index";
 
 function PasswordResetPage() {
-    const dispatch = useAppDispatch();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [password, setPassword] = React.useState('');
     const [token, setToken] = React.useState('');

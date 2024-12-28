@@ -1,7 +1,8 @@
 import {
     GET_INGREDIENTS_FAILED,
     GET_INGREDIENTS_REQUEST,
-    GET_INGREDIENTS_SUCCESS, TIngredientsActions
+    GET_INGREDIENTS_SUCCESS,
+    TIngredientsActions
 } from '../../actions/constructor/ingredients';
 import {IIngredient, IngredientType} from "../../../types/IIngredient";
 

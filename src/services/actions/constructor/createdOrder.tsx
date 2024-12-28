@@ -2,6 +2,7 @@ import {request} from "../../../utils/requests";
 import {CLEAR_CONSTRUCTOR_INGREDIENT, TConstructorIngredientsActions} from "./constructorIngredients";
 import {Dispatch} from "redux";
 import {IOrder} from "../../../types/IOrder";
+import Cookies from "js-cookie";
 
 export const GET_CREATED_ORDER_FAILED: 'GET_CREATED_ORDER_FAILED' = 'GET_CREATED_ORDER_FAILED';
 export const GET_CREATED_ORDER_REQUEST: 'GET_CREATED_ORDER_REQUEST' = 'GET_CREATED_ORDER_REQUEST';
@@ -35,27 +36,19 @@ const ORDER_ENDPOINT = 'orders';
 
 export function getCreatedOrder(ingredients: ReadonlyArray<string>) {
     return function (dispatch: Dispatch<TCreatedOrderActions | TConstructorIngredientsActions>) {
-        const controller = new AbortController();
-        const signal = controller.signal;
-        const timeoutId = setTimeout(() => controller.abort(), 3000);
 
         dispatch({type: GET_CREATED_ORDER_REQUEST})
         request<IOrder>(ORDER_ENDPOINT, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': Cookies.get('accessToken')!
             },
-            body: JSON.stringify({ingredients: ingredients}),
-            signal
+            body: JSON.stringify({ingredients: ingredients})
         }).then(result => {
-            clearTimeout(timeoutId);
             dispatch({type: CLEAR_CONSTRUCTOR_INGREDIENT});
             dispatch({type: GET_CREATED_ORDER_SUCCESS, order: result})
         }).catch(error => {
-            if (error.name === 'AbortError') {
-                console.error("Order request timed out")
-            }
-
             dispatch({type: GET_CREATED_ORDER_FAILED})
         });
     }
