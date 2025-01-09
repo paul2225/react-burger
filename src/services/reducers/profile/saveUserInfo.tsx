@@ -2,20 +2,20 @@ import {
     SAVE_USER_INFO_FAILED,
     SAVE_USER_INFO_REQUEST,
     SAVE_USER_INFO_SUCCESS,
-    SaveUserInfoActions
+    TSaveUserInfoActions
 } from "../../actions/profile/saveUserInfo";
 
-type TInitialState = {
+type TSaveUserInfoState = {
     saveUserInfoRequest: boolean,
     saveUserInfoFailed: boolean
 }
 
-const initialState: TInitialState = {
+const initialState: TSaveUserInfoState = {
     saveUserInfoRequest: false,
     saveUserInfoFailed: false,
 };
 
-export const saveUserInfoReducer = (state = initialState, action: SaveUserInfoActions) => {
+export const saveUserInfoReducer = (state = initialState, action: TSaveUserInfoActions): TSaveUserInfoState => {
     switch (action.type) {
         case SAVE_USER_INFO_REQUEST: {
             return {

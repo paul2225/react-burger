@@ -3,7 +3,7 @@ import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./burger-ingredients.module.css";
 import IngredientsContainer from "./IngredientsContainer";
 import {IngredientType} from "../../types/IIngredient";
-import {useAppSelector} from "../../index";
+import {useSelector} from "../../index";
 
 type TIngredientsRefs = {
     [IngredientType.BUN]: React.RefObject<HTMLDivElement>
@@ -13,7 +13,7 @@ type TIngredientsRefs = {
 
 function BurgerIngredients() {
     const [current, setCurrent] = useState(IngredientType.BUN);
-    const ingredientsByType = useAppSelector(state => state.ingredients.ingredientsByType);
+    const ingredientsByType = useSelector(state => state.ingredients.ingredientsByType);
 
     const ingredientsListRef = useRef<HTMLDivElement>(null);
     const bunRef = useRef<HTMLDivElement>(null);

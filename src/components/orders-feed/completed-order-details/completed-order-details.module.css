@@ -1,0 +1,112 @@
+.completedOrderDetails {
+    width: 700px;
+    height: 100%;
+    background-color: #1C1C21;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    border-radius: 50px;
+    max-width: 720px;
+}
+
+.orderNumber {
+    composes: text text_type_digits-default from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    align-self: flex-start;
+    padding-left: 30px;
+    padding-top: 50px;
+}
+
+.orderName {
+    composes: text text_type_main-medium from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    align-self: flex-start;
+    padding-left: 30px;
+    padding-top: 50px;
+}
+
+.orderStatus {
+    composes: text text_type_main-small from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    align-self: flex-start;
+    padding-left: 30px;
+    padding-top: 10px;
+    color: #61dafb;
+}
+
+.orderCompositionHeader {
+    composes: text text_type_main-medium from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    display: flex;
+    flex-direction: row;
+    align-self: flex-start;
+    padding-left: 30px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.orderCompositionList {
+    width: 90%;
+    composes: custom-scroll from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    max-height: 250px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.createdAt {
+    composes: text text_type_main-small text_color_inactive from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+}
+
+.orderPrice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    composes: text text_type_digits-default from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+}
+
+.ingredientsDetailsShort {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.leftSide, .rightSide {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ingredientsImage {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    object-fit: cover;
+    object-position: center;
+    border: 2px solid #6a0dad;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.ingredientsName {
+    composes: text text_type_main-default from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    padding-left: 10px;
+}
+
+.ingredientsPrice {
+    composes: text text_type_digits-default from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    padding-left: 10px;
+}
+
+.leftSide {
+    max-width: 100%;
+}

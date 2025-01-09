@@ -1,28 +1,28 @@
 import {requestWithAuth} from "../../../utils/requests";
 import {Dispatch} from "redux";
 
-export const SAVE_USER_INFO_FAILED = 'SAVE_USER_INFO_FAILED';
-export const SAVE_USER_INFO_REQUEST = 'SAVE_USER_INFO_REQUEST';
-export const SAVE_USER_INFO_SUCCESS = 'SAVE_USER_INFO_SUCCESS';
+export const SAVE_USER_INFO_FAILED: 'SAVE_USER_INFO_FAILED' = 'SAVE_USER_INFO_FAILED';
+export const SAVE_USER_INFO_REQUEST: 'SAVE_USER_INFO_REQUEST' = 'SAVE_USER_INFO_REQUEST';
+export const SAVE_USER_INFO_SUCCESS: 'SAVE_USER_INFO_SUCCESS' = 'SAVE_USER_INFO_SUCCESS';
 
-interface SaveUserInfoFailedAction {
+interface ISaveUserInfoFailedAction {
     type: typeof SAVE_USER_INFO_FAILED;
 }
 
-interface SaveUserInfoRequestAction {
+interface ISaveUserInfoRequestAction {
     type: typeof SAVE_USER_INFO_REQUEST;
 }
 
-interface SaveUserInfoSuccessAction {
+interface ISaveUserInfoSuccessAction {
     type: typeof SAVE_USER_INFO_SUCCESS;
 }
 
-export type SaveUserInfoActions = SaveUserInfoFailedAction | SaveUserInfoRequestAction | SaveUserInfoSuccessAction
+export type TSaveUserInfoActions = ISaveUserInfoFailedAction | ISaveUserInfoRequestAction | ISaveUserInfoSuccessAction
 
 const SAVE_USER_INFO_ENDPOINT = 'auth/user';
 
 export const saveUserInfo = (name: string, email: string, password: string) => {
-    return async function (dispatch: Dispatch<SaveUserInfoActions>) {
+    return async function (dispatch: Dispatch<TSaveUserInfoActions>) {
         dispatch({type: SAVE_USER_INFO_REQUEST})
         return await requestWithAuth(SAVE_USER_INFO_ENDPOINT, 'PATCH', {
             name: name,

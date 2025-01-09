@@ -9,6 +9,8 @@ import {loginReducer} from "./security/login";
 import {logoutReducer} from "./security/logout";
 import {saveUserInfoReducer} from "./profile/saveUserInfo";
 import {getUserInfoReducer} from "./profile/getUserInfo";
+import {ordersFeedReducer} from "./orders/ordersFeed";
+import {userOrdersFeedReducer} from "./orders/userOrders";
 
 export const rootReducer = combineReducers({
     ingredients: ingredientsReducer,
@@ -20,5 +22,7 @@ export const rootReducer = combineReducers({
     login: loginReducer,
     logout: logoutReducer,
     getUserInfo: getUserInfoReducer,
-    saveUserInfo: saveUserInfoReducer
+    saveUserInfo: saveUserInfoReducer,
+    ordersFeed: ordersFeedReducer,
+    usersOrders: userOrdersFeedReducer
 });

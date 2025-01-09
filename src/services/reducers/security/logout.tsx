@@ -1,16 +1,16 @@
-import {LOGOUT_FAILED, LOGOUT_REQUEST, LOGOUT_SUCCESS, LogoutActions} from "../../actions/security/logout";
+import {LOGOUT_FAILED, LOGOUT_REQUEST, LOGOUT_SUCCESS, TLogoutActions} from "../../actions/security/logout";
 
-type TInitialState = {
+type TLogoutState = {
     logoutRequest: boolean,
     logoutFailed: boolean
 }
 
-const initialState: TInitialState = {
+const initialState: TLogoutState = {
     logoutRequest: false,
     logoutFailed: false,
 };
 
-export const logoutReducer = (state = initialState, action: LogoutActions) => {
+export const logoutReducer = (state = initialState, action: TLogoutActions): TLogoutState => {
     switch (action.type) {
         case LOGOUT_REQUEST:
             return {...state, logoutRequest: true};

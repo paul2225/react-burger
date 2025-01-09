@@ -27,7 +27,7 @@ function IngredientCard({ingredient, count}: { ingredient: IIngredient, count: n
             </div>
 
             <div className={styles.price}>
-                <p className="text text_type_main-default">{ingredient.price}</p>
+                <p className="text text_type_digits-default">{ingredient.price}</p>
                 <CurrencyIcon type="primary"/>
             </div>
 

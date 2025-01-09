@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './ingridient-details.module.css';
 import {useParams} from "react-router-dom";
-import {useAppSelector} from "../../index";
+import {useSelector} from "../../index";
 
 function IngredientDetails() {
     const {id} = useParams<{ id: string }>();
 
-    const ingredientsById = useAppSelector(state => state.ingredients.ingredientsById);
+    const ingredientsById = useSelector(state => state.ingredients.ingredientsById);
     const ingredient = ingredientsById[id!];
 
     if (!ingredientsById[id!]) {

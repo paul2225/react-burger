@@ -1,0 +1,27 @@
+.feedPage {
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    padding-top: 20px;
+    width: 100%;
+    min-width: 1400px;
+}
+
+.ordersFeed {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 700px;
+}
+
+.ordersSummary {
+    min-width: 700px;
+}
+
+.header {
+    composes: text text_type_main-large from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    padding-bottom: 30px;
+}

@@ -1,11 +1,11 @@
 import React from 'react';
 import {IIngredient} from "../../types/IIngredient";
-import {useAppSelector} from "../../index";
+import {useSelector} from "../../index";
 import styles from "./ingredients-container.module.css"
 import IngredientCard from "./IngredientCard";
 
 function IngredientsContainer({header, ingredients}: { header: string, ingredients: Array<IIngredient> }) {
-    const constructorIngredients = useAppSelector(state => state.constructorIngredients.ingredients);
+    const constructorIngredients = useSelector(state => state.constructorIngredients.ingredients);
 
     return (
         <>

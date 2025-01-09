@@ -1,25 +1,25 @@
 import {
     CLEAR_CREATED_ORDER,
-    CreatedOrderActions,
+    TCreatedOrderActions,
     GET_CREATED_ORDER_FAILED,
     GET_CREATED_ORDER_REQUEST,
     GET_CREATED_ORDER_SUCCESS
 } from "../../actions/constructor/createdOrder";
 import {IOrder} from "../../../types/IOrder";
 
-type TInitialState = {
+type TCreatedOrderState = {
     order: IOrder | null,
     createdOrderRequest: boolean,
-    createdOrderFailed: false
+    createdOrderFailed: boolean
 }
 
-const initialState: TInitialState = {
+const initialState: TCreatedOrderState = {
     order: null,
     createdOrderRequest: false,
     createdOrderFailed: false,
 };
 
-export const createdOrderReducer = (state = initialState, action: CreatedOrderActions) => {
+export const createdOrderReducer = (state = initialState, action: TCreatedOrderActions): TCreatedOrderState => {
     switch (action.type) {
         case GET_CREATED_ORDER_REQUEST: {
             return {

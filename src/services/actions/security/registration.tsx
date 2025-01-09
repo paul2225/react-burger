@@ -2,28 +2,28 @@ import {request} from "../../../utils/requests";
 import Cookies from 'js-cookie';
 import {Dispatch} from "redux";
 
-export const REGISTRATION_FAILED = 'REGISTRATION_FAILED';
-export const REGISTRATION_REQUEST = 'REGISTRATION_REQUEST';
-export const REGISTRATION_SUCCESS = 'REGISTRATION_SUCCESS';
+export const REGISTRATION_FAILED: 'REGISTRATION_FAILED' = 'REGISTRATION_FAILED';
+export const REGISTRATION_REQUEST: 'REGISTRATION_REQUEST' = 'REGISTRATION_REQUEST';
+export const REGISTRATION_SUCCESS: 'REGISTRATION_SUCCESS' = 'REGISTRATION_SUCCESS';
 
-interface RegistrationFailedAction {
+interface IRegistrationFailedAction {
     type: typeof REGISTRATION_FAILED;
 }
 
-interface RegistrationRequestAction {
+interface IRegistrationRequestAction {
     type: typeof REGISTRATION_REQUEST;
 }
 
-interface RegistrationSuccessAction {
+interface IRegistrationSuccessAction {
     type: typeof REGISTRATION_SUCCESS;
 }
 
-export type RegistrationActions = RegistrationFailedAction | RegistrationRequestAction | RegistrationSuccessAction
+export type TRegistrationActions = IRegistrationFailedAction | IRegistrationRequestAction | IRegistrationSuccessAction
 
 const REGISTRATION_ENDPOINT = 'auth/register';
 
 export const registration = (name: string, email: string, password: string) => {
-    return async function (dispatch: Dispatch<RegistrationActions>) {
+    return async function (dispatch: Dispatch<TRegistrationActions>) {
         const controller = new AbortController();
         const signal = controller.signal;
         const timeoutId = setTimeout(() => controller.abort(), 3000);

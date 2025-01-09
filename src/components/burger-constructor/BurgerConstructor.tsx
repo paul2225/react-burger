@@ -12,16 +12,17 @@ import {
 import {CLEAR_CREATED_ORDER, getCreatedOrder} from "../../services/actions/constructor/createdOrder";
 import {useNavigate} from "react-router-dom";
 import Loader from "../loader/Loader";
-import {useAppDispatch, useAppSelector} from "../../index";
 import Cookies from "js-cookie";
-import {BunType, IIngredientElement, IngredientType} from "../../types/IIngredient";
+import {BunType, IIngredient, IIngredientElement, IngredientType} from "../../types/IIngredient";
+import {useDispatch, useSelector} from "../../index";
+import {calcBurgerPrice} from "../../utils/utils";
 
 function BurgerConstructor() {
-    const ingredients = useAppSelector(state => state.constructorIngredients.ingredients);
-    const createdOrder = useAppSelector(state => state.createdOrder.order);
-    const createdOrderRequest = useAppSelector(state => state.createdOrder.createdOrderRequest);
+    const ingredients = useSelector(state => state.constructorIngredients.ingredients);
+    const createdOrder = useSelector(state => state.createdOrder.order);
+    const createdOrderRequest = useSelector(state => state.createdOrder.createdOrderRequest);
 
-    const dispatch = useAppDispatch();
+    const dispatch = useDispatch();
     const navigate = useNavigate()
 
     const moveIngredient = (draggedIndex: number, targetIndex: number) => {
@@ -33,14 +34,15 @@ function BurgerConstructor() {
 
     const [, dropTarget] = useDrop({
         accept: ["ingredient", "constructorIngredient"],
-        drop(item: IIngredientElement, monitor) {
+        drop(item: IIngredientElement | IIngredient, monitor) {
             const itemType = monitor.getItemType();
-
             if (itemType === 'ingredient') {
-                dispatch({type: ADD_CONSTRUCTOR_INGREDIENT, ingredient: item});
+                dispatch({type: ADD_CONSTRUCTOR_INGREDIENT, ingredient: item as IIngredient});
             } else if (itemType === 'constructorIngredient') {
+                item = item as IIngredientElement;
+                const monitorItem = monitor.getItem() as IIngredientElement
                 const draggedIndex = item.index;
-                const targetIndex = monitor.getItem().index;
+                const targetIndex = monitorItem.index;
 
                 if (ingredients[targetIndex].type !== 'bun' && ingredients[draggedIndex].type !== 'bun') {
                     if (draggedIndex !== targetIndex) {
@@ -51,9 +53,7 @@ function BurgerConstructor() {
         },
     });
 
-    const totalSum = useMemo(() => ingredients
-            .map(ingredient => ingredient.price)
-            .reduce((acc, num) => acc + num, 0),
+    const totalSum = useMemo(() => calcBurgerPrice(ingredients),
         [ingredients]
     );
 
@@ -85,7 +85,7 @@ function BurgerConstructor() {
                         <Ingredient
                             key={ingredient._id + index}
                             index={index}
-                            { ...(type !== undefined && { type })}
+                            {...(type !== undefined && {type})}
                             isDraggable={isDraggable}
                             isLocked={locked}
                             ingredient={ingredient}

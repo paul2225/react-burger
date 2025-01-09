@@ -3,10 +3,10 @@ import {Button, EmailInput, PasswordInput} from "@ya.praktikum/react-developer-b
 import styles from "../common-page.module.css";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import {login} from "../../../services/actions/security/login";
-import {useAppDispatch} from "../../../index";
+import {useDispatch} from "../../../index";
 
 function LoginPage() {
-    const dispatch = useAppDispatch();
+    const dispatch = useDispatch();
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const navigate = useNavigate();

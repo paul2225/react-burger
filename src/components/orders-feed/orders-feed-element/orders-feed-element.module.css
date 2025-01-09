@@ -1,0 +1,79 @@
+.ingredient {
+    width: 50px;
+    height: 50px;
+    margin-right: -15px;
+    position: relative;
+    object-fit: cover;
+    object-position: center;
+    border: 2px solid #6a0dad;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.fadedIngredient {
+    composes: ingredient;
+    opacity: 50%;
+}
+
+.fadedIngredientNumber {
+    position: absolute;
+    margin-top: 16px;
+    margin-left: 16px;
+    font-weight: bold;
+}
+
+.fadedIngredientSection {
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.orderFeedElement {
+    height: 300px;
+    width: 600px;
+    border-radius: 16px;
+    background-color: #1C1C21;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 20px 20px;
+}
+
+.header {
+    composes: text text_type_main-medium from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    padding: 20px 20px;
+}
+
+.orderNumber {
+    composes: text text_type_digits-default from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+}
+
+.createdAt {
+    composes: text text_type_main-small text_color_inactive from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+}
+
+.ingredients {
+    display: flex;
+    flex-direction: row;
+}
+
+.price {
+    display: flex;
+    composes: text text_type_digits-default from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    align-content: center;
+    gap: 8px;
+}

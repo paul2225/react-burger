@@ -4,7 +4,7 @@ import styles from "./ingredient.module.css";
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {BunType, IIngredientElement, IngredientType} from "../../types/IIngredient";
 import {REMOVE_CONSTRUCTOR_INGREDIENT} from "../../services/actions/constructor/constructorIngredients";
-import {useAppDispatch} from "../../index";
+import {useDispatch} from "../../index";
 
 const typeName = {[BunType.TOP]: " (верх)", [BunType.BOTTOM]: ' (низ)'}
 
@@ -31,7 +31,7 @@ function Ingredient(ingredientElement: IIngredientElement) {
         dragRef(dropRef(node));
     };
 
-    const dispatch = useAppDispatch();
+    const dispatch = useDispatch();
 
     return (
         <article className={styles.ingridient} ref={combinedRef}>

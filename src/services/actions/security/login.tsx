@@ -2,28 +2,28 @@ import {request} from "../../../utils/requests";
 import Cookies from 'js-cookie';
 import {Dispatch} from "redux";
 
-export const LOGIN_FAILED = 'LOGIN_FAILED';
-export const LOGIN_REQUEST = 'LOGIN_REQUEST';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILED: 'LOGIN_FAILED' = 'LOGIN_FAILED';
+export const LOGIN_REQUEST: 'LOGIN_REQUEST' = 'LOGIN_REQUEST';
+export const LOGIN_SUCCESS: 'LOGIN_SUCCESS' = 'LOGIN_SUCCESS';
 
-interface LoginFailedAction {
+interface ILoginFailedAction {
     type: typeof LOGIN_FAILED
 }
 
-interface LoginRequestAction {
+interface ILoginRequestAction {
     type: typeof LOGIN_REQUEST;
 }
 
-interface LoginSuccessAction {
+interface ILoginSuccessAction {
     type: typeof LOGIN_SUCCESS;
 }
 
-export type LoginActions = LoginFailedAction | LoginRequestAction | LoginSuccessAction
+export type TLoginActions = ILoginFailedAction | ILoginRequestAction | ILoginSuccessAction
 
 const LOGIN_ENDPOINT = 'auth/login';
 
 export const login = (email: string, password: string) => {
-    return async function (dispatch: Dispatch<LoginActions>) {
+    return async function (dispatch: Dispatch<TLoginActions>) {
         const controller = new AbortController();
         const signal = controller.signal;
         const timeoutId = setTimeout(() => controller.abort(), 3000);

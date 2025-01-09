@@ -2,28 +2,28 @@ import {requestWithAuth} from "../../../utils/requests";
 import Cookies from 'js-cookie';
 import {Dispatch} from "redux";
 
-export const LOGOUT_FAILED = 'LOGIN_FAILED';
-export const LOGOUT_REQUEST = 'LOGIN_REQUEST';
-export const LOGOUT_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGOUT_FAILED: 'LOGOUT_FAILED' = 'LOGOUT_FAILED';
+export const LOGOUT_REQUEST: 'LOGOUT_REQUEST' = 'LOGOUT_REQUEST';
+export const LOGOUT_SUCCESS: 'LOGOUT_SUCCESS' = 'LOGOUT_SUCCESS';
 
-interface LogoutFailedAction {
+interface ILogoutFailedAction {
     type: typeof LOGOUT_FAILED;
 }
 
-interface LogoutRequestAction {
+interface ILogoutRequestAction {
     type: typeof LOGOUT_REQUEST;
 }
 
-interface LogoutSuccessAction {
+interface ILogoutSuccessAction {
     type: typeof LOGOUT_SUCCESS;
 }
 
-export type LogoutActions = LogoutFailedAction | LogoutRequestAction | LogoutSuccessAction;
+export type TLogoutActions = ILogoutFailedAction | ILogoutRequestAction | ILogoutSuccessAction;
 
 const LOGOUT_ENDPOINT = 'auth/logout';
 
 export const logout = () => {
-    return async function (dispatch: Dispatch<LogoutActions>) {
+    return async function (dispatch: Dispatch<TLogoutActions>) {
         dispatch({type: LOGOUT_REQUEST})
 
         return await requestWithAuth(LOGOUT_ENDPOINT, 'POST', {token: Cookies.get('refreshToken')})

@@ -3,10 +3,10 @@ import {Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-deve
 import styles from "../common-page.module.css";
 import {Link, useNavigate} from "react-router-dom";
 import {registration} from "../../../services/actions/security/registration";
-import {useAppDispatch} from "../../../index";
+import {useDispatch} from "../../../index";
 
 function RegistrationPage() {
-    const dispatch = useAppDispatch();
+    const dispatch = useDispatch();
     const [name, setName] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');

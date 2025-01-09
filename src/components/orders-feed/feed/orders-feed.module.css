@@ -1,0 +1,19 @@
+.header {
+    composes: text text_type_main-large from '../../../../node_modules/@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    padding-bottom: 30px;
+}
+
+.top {
+    flex-direction: row;
+}
+
+.ordersList {
+    composes: custom-scroll from '../../../../node_modules/@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    height: calc(100vh - 130px - 40px - 40px);
+    overflow-y: auto;
+    width: 650px;
+    justify-content: flex-start;
+}

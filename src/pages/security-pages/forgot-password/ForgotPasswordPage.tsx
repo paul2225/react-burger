@@ -3,10 +3,10 @@ import {Button, EmailInput} from "@ya.praktikum/react-developer-burger-ui-compon
 import styles from "../common-page.module.css";
 import {Link, useNavigate} from "react-router-dom";
 import {forgotPassword} from "../../../services/actions/security/forgotPassword";
-import {useAppDispatch} from "../../../index";
+import {useDispatch} from "../../../index";
 
 function ForgotPasswordPage() {
-    const dispatch = useAppDispatch();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [email, setEmail] = React.useState('');
 
