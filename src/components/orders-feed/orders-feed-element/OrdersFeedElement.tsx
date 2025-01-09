@@ -9,7 +9,10 @@ import {IIngredient} from "../../../types/IIngredient";
 export function OrdersFeedElement({order}: { order: IFeedOrder }) {
     const location = useLocation();
     const ingredientsById = useSelector(state => state.ingredients.ingredientsById)
-    const ingredients = order.ingredients.map(ingredient => ingredientsById[ingredient])
+    const ingredients = order.ingredients
+        .filter(ingredient => ingredient)
+        .map(ingredient => ingredientsById[ingredient])
+
     const price = calcBurgerPrice(ingredients);
 
     return (
@@ -19,7 +22,7 @@ export function OrdersFeedElement({order}: { order: IFeedOrder }) {
                 <FormattedDate className={styles.createdAt} date={new Date(order.createdAt)}/>
             </section>
             <p className={styles.header}>{order.name}</p>
-            <section className={styles.footer}>
+            <div className={styles.footer}>
                 <section className={styles.ingredients}>
                     {
                         ingredients
@@ -38,7 +41,7 @@ export function OrdersFeedElement({order}: { order: IFeedOrder }) {
                     }
                 </section>
                 <section className={styles.price}>{price} <CurrencyIcon type="primary"/></section>
-            </section>
+            </div>
         </Link>
     )
 }
