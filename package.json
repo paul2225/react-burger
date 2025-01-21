@@ -33,7 +33,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -58,5 +60,6 @@
     "cypress": "^14.0.0",
     "eslint": "^8.0.0",
     "eslint-plugin-cypress": "^3.0.0"
-  }
+  },
+  "homepage": "https://paul2225.github.io/react-burger"
 }
