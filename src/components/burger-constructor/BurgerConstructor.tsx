@@ -70,7 +70,7 @@ function BurgerConstructor() {
 
     return (
         <section className={styles.constructorStyle}>
-            <div className={styles.ingredients} ref={dropTarget}>
+            <div className={styles.ingredients} ref={dropTarget} data-testid="constructor-ingredient">
                 {ingredients.map((ingredient, index) => {
                     let isDraggable = true;
                     let type: BunType | undefined = undefined;
@@ -90,6 +90,7 @@ function BurgerConstructor() {
                             isLocked={locked}
                             ingredient={ingredient}
                             moveIngredient={moveIngredient}
+                            data-testid="constructor-ingredient"
                         />
                     );
                 })}
@@ -101,6 +102,7 @@ function BurgerConstructor() {
                     <CurrencyIcon type="primary"/>
                 </div>
                 <Button
+                    data-testid="makeOrderButton"
                     htmlType="submit"
                     type="primary"
                     size="large"

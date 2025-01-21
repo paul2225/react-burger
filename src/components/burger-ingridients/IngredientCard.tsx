@@ -15,7 +15,7 @@ function IngredientCard({ingredient, count}: { ingredient: IIngredient, count: n
 
     return (
         <Link to={`/ingredients/${ingredient._id}`} state={{background: location}} ref={dragRef}
-              className={styles.card}>
+              className={styles.card} data-testid="ingredient">
             <img
                 src={ingredient.image}
                 className={styles.img}
