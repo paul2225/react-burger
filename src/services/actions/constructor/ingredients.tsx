@@ -5,6 +5,7 @@ import {IIngredient} from "../../../types/IIngredient";
 export const GET_INGREDIENTS_FAILED: 'GET_INGREDIENTS_FAILED' = 'GET_INGREDIENTS_FAILED';
 export const GET_INGREDIENTS_REQUEST: 'GET_INGREDIENTS_REQUEST' = 'GET_INGREDIENTS_REQUEST';
 export const GET_INGREDIENTS_SUCCESS: 'GET_INGREDIENTS_SUCCESS' = 'GET_INGREDIENTS_SUCCESS';
+export const CLEAR_INGREDIENTS: 'CLEAR_INGREDIENTS' = 'CLEAR_INGREDIENTS';
 
 interface IGetIngredientsRequestAction {
     type: typeof GET_INGREDIENTS_REQUEST;
@@ -19,7 +20,15 @@ interface IGetIngredientsFailedAction {
     type: typeof GET_INGREDIENTS_FAILED;
 }
 
-export type TIngredientsActions = IGetIngredientsRequestAction | IGetIngredientsSuccessAction | IGetIngredientsFailedAction;
+interface IClearIngredients {
+    type: typeof CLEAR_INGREDIENTS
+}
+
+export type TIngredientsActions =
+    IGetIngredientsRequestAction
+    | IGetIngredientsSuccessAction
+    | IGetIngredientsFailedAction
+    | IClearIngredients;
 
 const INGREDIENTS_ENDPOINT = 'ingredients';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ingridient-details.module.css';
+import styles from './ingredient-details.module.css';
 import {useParams} from "react-router-dom";
 import {useSelector} from "../../index";
 

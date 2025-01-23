@@ -1,4 +1,5 @@
 import {
+    CLEAR_INGREDIENTS,
     GET_INGREDIENTS_FAILED,
     GET_INGREDIENTS_REQUEST,
     GET_INGREDIENTS_SUCCESS,
@@ -66,6 +67,9 @@ export const ingredientsReducer = (state = initialState, action: TIngredientsAct
                 ingredientsFailed: true,
                 ingredientsRequest: false
             };
+        }
+        case CLEAR_INGREDIENTS: {
+            return initialState;
         }
         default: {
             return state;

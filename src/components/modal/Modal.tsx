@@ -24,7 +24,7 @@ function Modal({modal, close}: { modal: ReactNode, close: () => void }) {
             <ModalOverlay
                 close={close}
                 content={
-                    <section className={styles.modalContent} onClick={stopPropagation}>
+                    <section data-testid={"modal"} className={styles.modalContent} onClick={stopPropagation}>
                         <>
                             <button
                                 className={styles.closeIcon}
